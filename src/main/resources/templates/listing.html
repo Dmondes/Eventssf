@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Event ID</th>
+                <th>Event Name</th>
+                <th>Event Size</th>
+                <th>Event Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr th:each="event : ${events}">
+                <td th:text="${event.eventId}"></td>
+                <td th:text="${event.eventName}"></td>
+                <td th:text="${event.eventSize}"></td>
+                <td th:text="${event.simpleDate}"></td>
+                <td>
+                    <form action="/events/register/${event.eventId}" method="get">
+                        <input type="hidden" name="eventId" th:value="${event.eventId}" />
+                        <input type="hidden" name="eventName" th:value="${event.eventName}" />
+                        <input type="hidden" name= "eventDate" th:value="${event.simpleDate}" />
+                        <button type="submit">Register</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
